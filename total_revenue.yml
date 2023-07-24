@@ -1,0 +1,30 @@
+# models/total_revenue.yml
+
+version: 2
+
+sources:  # This is optional if you have sources to define
+  - name: orders
+    tables:
+      - name: orders
+
+  - name: sales
+    tables:
+      - name: sales
+
+models:
+  - name: total_revenue
+    description: Model to calculate total revenue from sales
+    materialized: table
+    dbt_alias: tr
+    schema: public  # Replace with the actual schema name
+    columns:
+      - name: month
+        description: The month of the sales
+        tests:
+          - not_null
+      - name: total_revenue
+        description: The total revenue for the month
+        tests:
+          - not_null
+
+   
